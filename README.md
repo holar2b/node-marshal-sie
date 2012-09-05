@@ -25,9 +25,9 @@ $ npm install marshal-sie
 ## Implementera din tjänst
 Marshal-SIE är ett ramverk. Du måste tillhandahålla den källkod som avgör vilka SIE-filer som faktiskt ska publiceras samt startar tjänsten. 
 
-Ramverket implementerar en enda metod ```service``` som du anropar för varje SIE-fil som ska publiceras. Metoden läser in SIE-filen (krävs av prestandaskäl) samt skapar de tre tjänsterna. Metoden skapar dessutom en *"lyssnare"* som laddar om filen av den händelse att den ändras efter publicering. 
+Ramverket implementerar en enda metod *service* som du anropar för varje SIE-fil som ska publiceras. Metoden läser in SIE-filen (krävs av prestandaskäl) samt skapar de tre tjänsterna. Metoden skapar dessutom en *"lyssnare"* som laddar om filen av den händelse att den ändras efter publicering. 
 
-Första argumentet till ```service``` är en [express](http://expressjs.com/guide.html)-applikation. Du behöver därför inkludera express i din lösning.
+Första argumentet till *service* är en [express](http://expressjs.com/guide.html)-applikation. Du behöver därför inkludera express i din lösning.
 
 ```bash
 $ npm install express
@@ -44,7 +44,7 @@ ms.service(app, './data/BOKF2011.SI');
 app.listen(3000);
 ```
 
-Om tjänsten är tillgänglig i ett nätverk där inte samtliga användare är betrodda att ta del av information bör användaren auktoriseras. Detta sker genom att *överrida* metoden ```authorize```, se exempel nedan. 
+Om tjänsten är tillgänglig i ett nätverk där inte samtliga användare är betrodda att ta del av information bör användaren auktoriseras. Detta sker genom att *överrida* metoden *authorize*, se exempel nedan. 
 
 ```js
 ms.authorize = function(req, res, next) { 
@@ -60,21 +60,21 @@ Marshal-SIE är oberoende av hur auktoriseringen utförs. För att implementera 
 ## Hur man använder tjänsten
 Marshal-SIE ger s.k. ReST-tjänster som returnerar JSON-objekt och som är åtkomliga från alla moderna programmeringsmiljöer och direkt körbara i en webbläsare.
 
-För varje publicerad SIE-fil skapas de tre tjänsterna *verifikationer*, *transaktioner* och *objektlista*. Följande URL:er visar hur du når de tjänsterna för filen ```./data/FAKT.SI``` i exemplet ovan.
+För varje publicerad SIE-fil skapas de tre tjänsterna *verifikationer*, *transaktioner* och *objektlista*. Följande URL:er visar hur du når de tjänsterna för filen *./data/FAKT.SI* i exemplet ovan.
 
-	http://<ipaddr>:3000/FAKT.SI/verifikationer
+	http://domain:3000/FAKT.SI/verifikationer
 
-Listar samtliga verifikationer i filen. En verfikation motsvarar en ```#VER```-post i SIE-filen men inkluderar även SIE-filens globala data, t.ex. företagsnamn, orgnr och kontoplanstyp.
+Listar samtliga verifikationer i filen. En verfikation motsvarar en *#VER*-post i SIE-filen men inkluderar även SIE-filens globala data, t.ex. företagsnamn, orgnr och kontoplanstyp.
 
-	http://<ipaddr>:3000/FAKT.SI/transaktioner?serie=<serie>&vernr=<vernr>
+	http://domain:3000/FAKT.SI/transaktioner?serie=<serie>&vernr=<vernr>
 
-Listar transaktionerna för en viss verifikation. Värdena på argumenten ```serie``` och ```vernr``` fås genom hämtning av verifikationerna. Varje transaktion motsvarar en transaktionsrad (```#TRANS```, ```#BTRANS```, ```#RTRANS```). Dessutom har utökad information om det konto som berörs av transkationen hämtats ur SIE-filens kontoplan, t.ex. kontonamn, kontotyp och SRU-kod.
+Listar transaktionerna för en viss verifikation. Värdena på argumenten *serie* och *vernr* fås genom hämtning av verifikationerna. Varje transaktion motsvarar en transaktionsrad (*#TRANS*, *#BTRANS*, *#RTRANS*). Dessutom har utökad information om det konto som berörs av transkationen hämtats ur SIE-filens kontoplan, t.ex. kontonamn, kontotyp och SRU-kod.
 
-	http://<ipaddr>:3000/FAKT.SI/objektlista?serie=<serie>&vernr=<vernr>&index=<index>
+	http://domain:3000/FAKT.SI/objektlista?serie=<serie>&vernr=<vernr>&index=<index>
 
-Listar objekten hörande till en viss transaktion. Argumentet ```index``` avser transaktionens position i verfikationens transaktionslista. Första ```index``` är noll (0). För varje objekt i objektlistan har tjänsten även hämtat objektnamn och fullständig namn ur SIE-filens objektregister.
+Listar objekten hörande till en viss transaktion. Argumentet *index* avser transaktionens position i verfikationens transaktionslista. Första *index* är noll (0). För varje objekt i objektlistan har tjänsten även hämtat objektnamn och fullständig namn ur SIE-filens objektregister.
 
-**OBS!** URL:en innehåller den publicerade filens namn, inte dess fullständiga sökväg. Namnet måste vara URL-kodat. Detta innebär t.ex. att filen ```min fil.SI``` ger en URL enligt ```http://<ipaddr>:3000/min%20fil.SI/verifikationer```,  se [encodeURI](http://www.w3schools.com/tags/ref_urlencode.asp) för kodtabell.
+**OBS!** URL:en innehåller den publicerade filens namn, inte dess fullständiga sökväg. Namnet måste vara URL-kodat. Detta innebär t.ex. att filen *min fil.SI* ger en URL enligt *http://domain:3000/min%20fil.SI/verifikationer*,  se [encodeURI](http://www.w3schools.com/tags/ref_urlencode.asp) för kodtabell.
 
 <a name="lic"></a>
 ## Licensvillkor (MIT)
