@@ -5,7 +5,7 @@ Marshal-SIE är en ramverk för att publicera SIE-filer i tabellform.
 
 Tjänsten gör om SIE-filen till tre tabeller. En med verifikationstabell, en tabell med transaktioner per verifikation och en med objekten för en transaktion. Varje tabell är kompletterad med relevanta uppgifter ur SIE-filens kontoplan och objektsregister.
 
-Vårt primära syftet är tillåta skörd (*"harvesting"*) av SIE-filer m.h.a. [Marshal](http://www.risetobloome.com/Page_1_S_NodeListing.aspx?item=1830) men tjänsten är helt generell och kan användas i alla miljöer som hanterar JSON. 
+Det primära syftet är att tillåta skörd (*"harvesting"*) av SIE-filer m.h.a. [Marshal](http://www.risetobloome.com/Page_1_S_NodeListing.aspx?item=1830) men tjänsten är helt generell och kan användas i alla miljöer som kan ropa på en URL och hantera JSON. 
 
 ## Innehåll
 
