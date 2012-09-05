@@ -1,0 +1,19 @@
+{
+  "name": "marshal-sie",
+  "version": "0.1.0",
+  "description": "webservice for accessing SIE file content",
+  "main": "marshal-sie.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holar2b/node-marshal-sie.git"
+  },
+  "dependencies": {
+    "sie-reader": "0.x",  
+    "express": "3.x"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "holar2b",
+  "license": "MIT"
+}
