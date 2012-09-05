@@ -62,15 +62,15 @@ Marshal-SIE ger s.k. ReST-tjänster som returnerar JSON-objekt och som är åtko
 
 För varje publicerad SIE-fil skapas de tre tjänsterna *verifikationer*, *transaktioner* och *objektlista*. Följande URL:er visar hur du når de tjänsterna för filen ```./data/FAKT.SI``` i exemplet ovan.
 
-```http://<ipaddr>:3000/FAKT.SI/verifikationer``` 
+	http://<ipaddr>:3000/FAKT.SI/verifikationer
 
 Listar samtliga verifikationer i filen. En verfikation motsvarar en ```#VER```-post i SIE-filen men inkluderar även SIE-filens globala data, t.ex. företagsnamn, orgnr och kontoplanstyp.
 
-```http://<ipaddr>:3000/FAKT.SI/transaktioner?serie=<serie>&vernr=<vernr>```
+	http://<ipaddr>:3000/FAKT.SI/transaktioner?serie=<serie>&vernr=<vernr>
 
 Listar transaktionerna för en viss verifikation. Värdena på argumenten ```serie``` och ```vernr``` fås genom hämtning av verifikationerna. Varje transaktion motsvarar en transaktionsrad (```#TRANS```, ```#BTRANS```, ```#RTRANS```). Dessutom har utökad information om det konto som berörs av transkationen hämtats ur SIE-filens kontoplan, t.ex. kontonamn, kontotyp och SRU-kod.
 
-```http://<ipaddr>:3000/FAKT.SI/objektlista?serie=<serie>&vernr=<vernr>&index=<index>```
+	http://<ipaddr>:3000/FAKT.SI/objektlista?serie=<serie>&vernr=<vernr>&index=<index>
 
 Listar objekten hörande till en viss transaktion. Argumentet ```index``` avser transaktionens position i verfikationens transaktionslista. Första ```index``` är noll (0). För varje objekt i objektlistan har tjänsten även hämtat objektnamn och fullständig namn ur SIE-filens objektregister.
 
