@@ -7,6 +7,8 @@ Tjänsten gör om SIE-filen till tre tabeller. En med verifikationstabell, en ta
 
 Det primära syftet är att tillåta skörd (*"harvesting"*) av SIE-filer m.h.a. [Marshal](http://www.risetobloome.com/Page_1_S_NodeListing.aspx?item=1830) men tjänsten är helt generell och kan användas i alla miljöer som kan ropa på en URL och hantera JSON. 
 
+Mer information om SIE hittar du på [SIE-gruppens hemsida](http://www.sie.se).
+
 ## Innehåll
 
 - [Installation](#ins)
